@@ -1,0 +1,612 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.app-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.app-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Auth Styles */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.auth-form {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+  font-size: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.auth-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.auth-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.auth-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+}
+
+.auth-link a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+/* Messages */
+.error-message {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+
+.success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid #a7f3d0;
+}
+
+/* Dashboard */
+.dashboard {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.dashboard-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.balance {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.balance-amount {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.logout-btn {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 2px solid rgba(255,255,255,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.dashboard-tabs {
+  display: flex;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background: #e9ecef;
+}
+
+.tab.active {
+  background: white;
+  color: #667eea;
+  border-bottom: 3px solid #667eea;
+}
+
+.dashboard-content {
+  padding: 2rem;
+}
+
+/* Overview Tab */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.stat-card h3 {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.add-funds-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.add-funds-section h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.add-funds-form {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+}
+
+.add-funds-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.add-funds-btn {
+  padding: 0.75rem 1.5rem;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-funds-btn:hover {
+  background: #218838;
+}
+
+.recent-transactions h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.transaction-info {
+  flex: 1;
+}
+
+.transaction-id {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+.transaction-description {
+  font-weight: 600;
+  margin: 0.25rem 0;
+  color: #333;
+}
+
+.transaction-parties {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.transaction-details {
+  text-align: right;
+}
+
+.transaction-amount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.status-badge {
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Transaction Tab */
+.transactions-tab h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+.transaction-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  border: 1px solid #e9ecef;
+} 
+.transaction-info {
+  flex: 1;
+}
+.transaction-id {
+  font-size: 0.85rem; 
+  color: #666;
+  margin: 0;
+}
+.transaction-description {
+  font-weight: 600;
+  margin: 0.25rem 0;
+  color: #333;
+}
+.transaction-parties {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+.transaction-details {
+  text-align: right;
+}
+.transaction-amount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+.status-badge {
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: #28a745; /* Default success color */
+}
+.status-badge.pending {
+  background-color: #ffc107; /* Pending color */
+}
+.status-badge.failed {
+  background-color: #dc3545; /* Failed color */
+}
+.status-badge.completed {
+  background-color: #17a2b8; /* Completed color */
+} 
+/* Settings Tab */
+.settings-tab h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.settings-form label {
+  font-weight: 600;
+  color: #555;
+}
+.settings-form input {
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+.settings-form input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+.settings-form button {
+  padding: 0.75rem 1.5rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px; 
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.settings-form button:hover {
+  background: #5a6abf;
+}
+.settings-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+/* Footer */
+.footer {
+  background: #343a40;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.footer a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+/* Media Queries */
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2.5rem;
+  }
+  .app-header p {
+    font-size: 1rem;
+  }
+  .auth-form {    
+    padding: 1.5rem;
+  }
+  .auth-form h2 {
+    font-size: 1.5rem;
+  }
+  .stat-card {
+    padding: 1rem;
+  }
+  .stat-card h3 {
+    font-size: 0.8rem;
+  }
+  .stat-number {  
+    font-size: 1.5rem;
+  }
+  .add-funds-form {
+    flex-direction: column;
+  }
+  .add-funds-form input {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .add-funds-btn {
+    width: 100%;
+  }
+  .transaction-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .transaction-details {
+    text-align: left;
+  }
+  .transaction-amount {
+    font-size: 1rem;
+  } 
+  .status-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .settings-form input {
+    width: 100%;
+  }
+  .settings-form button {
+    width: 100%;
+  }
+  .footer {
+    font-size: 0.8rem;
+  }
+  .footer a {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  .app-header p {
+    font-size: 0.9rem;
+  }
+  .auth-form {
+    padding: 1rem;
+  }
+  .auth-form h2 {
+    font-size: 1.3rem;
+  }
+  .stat-card {
+    padding: 0.8rem;
+  }
+  .stat-card h3 {
+    font-size: 0.7rem;
+  }
+  .stat-number {
+    font-size: 1.2rem;
+  }
+  .add-funds-form {
+    flex-direction: column;
+  }
+  .add-funds-form input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .add-funds-btn {
+    width: 100%;    
+    padding: 0.5rem;
+  }
+  .transaction-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .transaction-details {
+    text-align: left;
+  }
+  .transaction-amount {
+    font-size: 0.9rem;
+  }
+  .status-badge {
+    font-size: 0.6rem;  
+    padding: 0.1rem 0.4rem;
+  }
